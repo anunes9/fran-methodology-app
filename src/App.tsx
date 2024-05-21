@@ -1,35 +1,43 @@
-import { useState } from "react"
-import reactLogo from "./assets/react.svg"
-import viteLogo from "/vite.svg"
-import "./App.css"
+import { useState, useEffect } from "react"
+import { Session, createClient } from "@supabase/supabase-js"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { LoginPage } from "./pages/Login"
+import { HomePage } from "./pages/Home"
 
-function App() {
-  const [count, setCount] = useState(0)
+const supabase = createClient(
+  import.meta.env.VITE_CLIENT,
+  import.meta.env.VITE_SECRET
+)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1 className="font-bold">Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage supabase={supabase} />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage supabase={supabase} />,
+  },
+])
+
+export default function App() {
+  // const [session, setSession] = useState(null as Session | null)
+  const [session, setSession] = useState(true as Session | null)
+
+  // useEffect(() => {
+  //   supabase.auth.getSession().then(({ data: { session } }) => {
+  //     setSession(session)
+  //   })
+
+  //   const {
+  //     data: { subscription },
+  //   } = supabase.auth.onAuthStateChange((_event, session) => {
+  //     setSession(session)
+  //   })
+
+  //   return () => subscription.unsubscribe()
+  // }, [])
+
+  if (session) return <RouterProvider router={router} />
+  else return <LoginPage supabase={supabase} />
 }
-
-export default App
