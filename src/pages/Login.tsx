@@ -1,7 +1,7 @@
 import FranMethodology from "../assets/fran-methodology.png"
 import { ThemeSupa } from "@supabase/auth-ui-shared"
 import { Auth } from "@supabase/auth-ui-react"
-import { supabase } from "../supabase"
+import { supabase } from "../lib/supabase"
 import { useEffect } from "react"
 import { useAuth } from "../contexts/auth"
 import { useNavigate } from "react-router-dom"
@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom"
 export const LoginPage = () => {
   const { session } = useAuth()
   const navigate = useNavigate()
-  console.log("session", session)
 
   useEffect(() => {
     if (session) navigate("/club")
@@ -17,7 +16,7 @@ export const LoginPage = () => {
 
   return (
     <div className="w-screen">
-      <div className="animate-in pt-24 max-w-md m-auto">
+      <div className="animate-in pt-24 px-4 max-w-md m-auto">
         <img
           alt="fran-methodology"
           src={FranMethodology}

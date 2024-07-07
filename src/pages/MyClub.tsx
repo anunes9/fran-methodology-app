@@ -1,5 +1,9 @@
+import { Layout } from "../layout/Layout"
+
 export const MyClubPage = () => (
-  <div>
-    <h1>My Club Page</h1>
-  </div>
+  <Layout>
+    <div>
+      <h1>My Club Page</h1>
+    </div>
+  </Layout>
 )
