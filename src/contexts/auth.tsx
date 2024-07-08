@@ -1,10 +1,19 @@
-import { Session, User } from "@supabase/supabase-js"
+import { Session } from "@supabase/supabase-js"
 import React, { useState, useEffect, useContext, createContext } from "react"
 import { supabase } from "../lib/supabase"
 
 interface AuthContextType {
   session: Session | null
-  user: User | undefined
+  user?: {
+    club_id: string
+    id: string
+    name: string
+  }
+  club?: {
+    name: string
+  }
+  getClub: () => void
+  getUser: () => void
   signOut: () => void
 }
 
@@ -12,10 +21,14 @@ const AuthContext = createContext<AuthContextType>(null!)
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [userSession, setSession] = useState(null as Session | null)
+  const [user, setUser] = useState(undefined)
+  const [club, setClub] = useState(undefined)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
       setSession(data.session)
+      getClub()
+      getUser()
     })
 
     const {
@@ -33,11 +46,36 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     })
   }
 
+  const getUser = () => {
+    supabase
+      .from("users_app")
+      .select()
+      .single()
+      .then(({ data }) => {
+        console.log(data)
+
+        setUser(data)
+      })
+  }
+
+  const getClub = () => {
+    supabase
+      .from("clubs_app")
+      .select()
+      .single()
+      .then(({ data }) => {
+        setClub(data)
+      })
+  }
+
   return (
     <AuthContext.Provider
       value={{
         session: userSession,
-        user: userSession?.user,
+        user,
+        club,
+        getClub,
+        getUser,
         signOut,
       }}
     >
