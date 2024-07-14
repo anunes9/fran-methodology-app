@@ -16,3 +16,8 @@ export const supabase = createClient(
   import.meta.env.VITE_SECRET,
   options
 )
+
+export const getAssetsUrl = (filePath: string) => {
+  const { data } = supabase.storage.from("public-assets").getPublicUrl(filePath)
+  return data.publicUrl
+}

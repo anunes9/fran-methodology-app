@@ -1,8 +1,7 @@
 import { SectionHeader } from "../components/SectionHeader"
-import { Layout } from "../layout/Layout"
 
 export const PlanningPage = () => (
-  <Layout>
+  <section>
     <SectionHeader title="Planning" description="My Club" />
-  </Layout>
+  </section>
 )
