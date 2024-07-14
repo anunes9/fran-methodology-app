@@ -30,6 +30,15 @@ export default {
         dimmed: "hsl(var(--dimmed))",
       },
     },
+    fontFamily: {
+      gtBold: ["GT-America Bold", "sans-serif"],
+      gtExtendedBlack: ["GT-America Extended Black", "sans-serif"],
+      gtExtendedBold: ["GT-America Extended Bold", "sans-serif"],
+      gtExtendedMedium: ["GT-America Extended Medium", "sans-serif"],
+      gtExtendedRegular: ["GT-America Extended Regular", "sans-serif"],
+      gtMedium: ["GT-America Medium", "sans-serif"],
+      gtRegular: ["GT-America Regular", "sans-serif"],
+    },
   },
   plugins: [],
 }

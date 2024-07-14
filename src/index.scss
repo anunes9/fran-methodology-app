@@ -21,12 +21,48 @@
   }
 }
 
+@font-face {
+  font-family: "GT-America Bold";
+  font-weight: 700;
+  src: local("GT-America Bold"), url("../fonts/GT-America-Bold.otf")
+}
+@font-face {
+  font-family: "GT-America Extended Black";
+  font-weight: 500;
+  src: local("GT-America Extended Black"), url("../fonts/GT-America-Extended-Black.otf")
+}
+@font-face {
+  font-family: "GT-America Extended Bold";
+  font-weight: 700;
+  src: local("GT-America Extended Bold"), url("../fonts/GT-America-Extended-Bold.otf")
+}
+@font-face {
+  font-family: "GT-America Extended Medium";
+  font-weight: 300;
+  src: local("GT-America Extended Medium"), url("../fonts/GT-America-Extended-Medium.otf")
+}
+@font-face {
+  font-family: "GT-America Extended Regular";
+  font-weight: 400;
+  src: local("GT-America Extended Regular"), url("../fonts/GT-America-Extended-Regular.otf")
+}
+@font-face {
+  font-family: "GT-America Medium";
+  font-weight: 300;
+  src: local("GT-America Medium"), url("../fonts/GT-America-Medium.otf")
+}
+@font-face {
+  font-family: "GT-America Regular";
+  font-weight: 400;
+  src: local("GT-America Regular"), url("../fonts/GT-America-Regular.otf")
+}
+
 .animate-in {
   animation: animateIn 0.3s ease 0.15s both;
 }
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "GT-America Regular", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
