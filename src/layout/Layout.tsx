@@ -1,19 +1,21 @@
-import { ReactNode, useEffect } from "react"
+import { useEffect } from "react"
 import { NavigationLinks } from "../lib/navigation-links"
 import { UserInformation } from "./UserInformation"
 import { MobileNavbar } from "./MobileNavbar"
 import { SidebarItem } from "./SidebarItem"
-import { useAuth } from "../contexts/auth"
-import { useNavigate } from "react-router-dom"
+import { useAuth } from "../hooks/useAuth"
+import { Navigate, Outlet, useNavigate } from "react-router-dom"
 import { LogoutButton } from "./LogoutButton"
 
-export const Layout = ({ children }: { children: ReactNode }) => {
+export const Layout = () => {
   const { session } = useAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
     if (!session) navigate("/")
   }, [session])
+
+  if (!session) <Navigate to="/" replace />
 
   return (
     <div className="flex flex-col sm:grid sm:grid-cols-[300px_minmax(0,_1fr)] h-screen">
@@ -37,8 +39,10 @@ export const Layout = ({ children }: { children: ReactNode }) => {
         </nav>
       </div>
 
-      <div className="flex-1 sm:block">
-        <div className="m-12 m-auto animate-in">{children}</div>
+      <div className="flex-1 sm:block p-12">
+        <div className="m-auto max-w-screen-xl animate-in">
+          <Outlet />
+        </div>
       </div>
     </div>
   )

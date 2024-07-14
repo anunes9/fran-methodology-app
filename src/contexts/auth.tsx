@@ -1,87 +1,83 @@
-import { Session } from "@supabase/supabase-js"
-import React, { useState, useEffect, useContext, createContext } from "react"
-import { supabase } from "../lib/supabase"
+import { Session, User } from "@supabase/supabase-js"
+import { createContext, useState, useEffect, ReactNode } from "react"
+import { supabase } from "../services/supabase"
 
 interface AuthContextType {
   session: Session | null
-  user?: {
-    club_id: string
-    id: string
-    name: string
-  }
+  user: User | null
+  // user?: {
+  //   club_id: string
+  //   id: string
+  //   name: string
+  // }
   club?: {
     name: string
   }
-  getClub: () => void
-  getUser: () => void
+  // getClub: () => void
+  // getUser: () => void
   signOut: () => void
 }
 
-const AuthContext = createContext<AuthContextType>(null!)
+export const AuthContext = createContext<AuthContextType>(null!)
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [userSession, setSession] = useState(null as Session | null)
-  const [user, setUser] = useState(undefined)
-  const [club, setClub] = useState(undefined)
+const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<User | null>(null)
+  const [session, setSession] = useState<Session | null>(null)
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session)
-      getClub()
-      getUser()
-    })
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-
-    return () => subscription.unsubscribe()
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        console.log("session onAuthStateChange: ", session)
+        setSession(session)
+        setUser(session?.user || null)
+        setLoading(false)
+      }
+    )
+    return () => {
+      listener?.subscription.unsubscribe()
+    }
   }, [])
 
-  const signOut = () => {
-    supabase.auth.signOut().then(() => {
+  const signOut = async () => {
+    const { error } = await supabase.auth.signOut()
+    console.log("error: ", error)
+    if (!error) {
+      setUser(null)
       setSession(null)
-    })
+    }
+    return { error }
   }
 
-  const getUser = () => {
-    supabase
-      .from("users_app")
-      .select()
-      .single()
-      .then(({ data }) => {
-        console.log(data)
+  // const getUser = () => {
+  //   supabase
+  //     .from("users_app")
+  //     .select()
+  //     .single()
+  //     .then(({ data }) => {
+  //       console.log(data)
 
-        setUser(data)
-      })
-  }
+  //       setUser(data)
+  //     })
+  // }
 
-  const getClub = () => {
-    supabase
-      .from("clubs_app")
-      .select()
-      .single()
-      .then(({ data }) => {
-        setClub(data)
-      })
-  }
+  // const getClub = () => {
+  //   supabase
+  //     .from("clubs_app")
+  //     .select()
+  //     .single()
+  //     .then(({ data }) => {
+  //       setClub(data)
+  //     })
+  // }
 
   return (
     <AuthContext.Provider
-      value={{
-        session: userSession,
-        user,
-        club,
-        getClub,
-        getUser,
-        signOut,
-      }}
+      value={{ session, user, signOut, club: { name: "club" } }}
     >
-      {children}
+      {!loading ? children : `<div>Loading...</div>`}
     </AuthContext.Provider>
   )
 }
 
-export const useAuth = () => useContext(AuthContext)
+export default AuthProvider

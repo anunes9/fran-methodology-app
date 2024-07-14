@@ -1,5 +1,5 @@
 import { IconUserCircle } from "@tabler/icons-react"
-import { useAuth } from "../contexts/auth"
+import { useAuth } from "../hooks/useAuth"
 
 export const UserInformation = () => {
   const { user } = useAuth()

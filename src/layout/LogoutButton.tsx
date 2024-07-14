@@ -1,4 +1,4 @@
-import { useAuth } from "../contexts/auth"
+import { useAuth } from "../hooks/useAuth"
 import { IconLogout } from "@tabler/icons-react"
 
 export const LogoutButton = () => {

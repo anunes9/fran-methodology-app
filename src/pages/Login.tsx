@@ -1,18 +1,18 @@
 import FranMethodology from "../assets/fran-methodology.png"
 import { ThemeSupa } from "@supabase/auth-ui-shared"
 import { Auth } from "@supabase/auth-ui-react"
-import { supabase } from "../lib/supabase"
+import { supabase } from "../services/supabase"
 import { useEffect } from "react"
-import { useAuth } from "../contexts/auth"
+import { useAuth } from "../hooks/useAuth"
 import { useNavigate } from "react-router-dom"
 
 export const LoginPage = () => {
-  const { session } = useAuth()
+  const { user } = useAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (session) navigate("/club")
-  }, [session])
+    if (user) navigate("/club")
+  }, [user])
 
   return (
     <div className="w-screen">
@@ -25,6 +25,7 @@ export const LoginPage = () => {
         />
 
         <Auth
+          //@ts-expect-error the type of client is ok
           supabaseClient={supabase}
           appearance={{
             theme: ThemeSupa,
