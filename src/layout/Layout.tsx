@@ -18,12 +18,12 @@ export const Layout = () => {
   if (!session) <Navigate to="/" replace />
 
   return (
-    <div className="flex flex-col sm:grid sm:grid-cols-[300px_minmax(0,_1fr)] h-screen">
+    <div className="flex flex-col lg:grid lg:grid-cols-[300px_minmax(0,_1fr)] h-screen">
       <div className="border-r border-r-foreground/10">
         <MobileNavbar />
 
-        <nav className="hidden sm:block">
-          <ul className="hidden sm:block mx-2 py-4 space-y-1 font-light">
+        <nav className="hidden lg:block">
+          <ul className="hidden lg:block mx-2 py-4 space-y-1 font-light">
             {NavigationLinks.map(({ name, href, icon }, i) => (
               <SidebarItem key={i} title={name} href={href} icon={icon} />
             ))}
@@ -39,7 +39,7 @@ export const Layout = () => {
         </nav>
       </div>
 
-      <div className="flex-1 sm:block p-12">
+      <div className="flex-1 lg:block p-12">
         <div className="m-auto max-w-screen-xl animate-in">
           <Outlet />
         </div>

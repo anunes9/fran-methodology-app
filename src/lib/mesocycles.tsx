@@ -1,7 +1,7 @@
 import {
-  IconHexagonNumber1,
-  IconHexagonNumber2,
-  IconHexagonNumber3,
+  IconCircleNumber1,
+  IconCircleNumber2,
+  IconCircleNumber3,
 } from "@tabler/icons-react"
 import { ReactNode } from "react"
 
@@ -30,7 +30,7 @@ export type MesocycleType = {
 export const Mesocycles: MesocycleType[] = [
   {
     id: "1",
-    icon: <IconHexagonNumber1 width={48} height={48} />,
+    icon: <IconCircleNumber1 color="#6bb8a4" width={48} height={48} />,
     name: "Mesociclo 1",
     concept: "5-in-a-row Concept",
     title: "Master the 5-in-a-row Concept",
@@ -45,7 +45,7 @@ export const Mesocycles: MesocycleType[] = [
         description:
           "Learn various professional playing stances and the Arigato Concept for optimal body alignment.",
         details: [
-          "Posture Bela, Paquito and Chingotto",
+          "Bela, Paquito and Chingotto Postures",
           "Arigato Concept and Scapular Waist",
           "Pros and cons of each style",
         ],
@@ -114,7 +114,7 @@ export const Mesocycles: MesocycleType[] = [
   },
   {
     id: "2",
-    icon: <IconHexagonNumber2 width={48} height={48} />,
+    icon: <IconCircleNumber2 color="#6bb8a4" width={48} height={48} />,
     name: "Mesociclo 2",
     concept: "Transversal concepts in aerial and ground game",
     title: "Transversal concepts in aerial and ground game",
@@ -167,7 +167,7 @@ export const Mesocycles: MesocycleType[] = [
   },
   {
     id: "3",
-    icon: <IconHexagonNumber3 width={48} height={48} />,
+    icon: <IconCircleNumber3 color="#6bb8a4" width={48} height={48} />,
     name: "Mesociclo 3",
     concept:
       "Mindset for attack, defense, and counter-attack, the Principle of Equity, Consistency and Speed",

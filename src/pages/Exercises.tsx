@@ -1,34 +1,47 @@
 import { useNavigate } from "react-router-dom"
-import { Badge } from "../components/Badge"
 import { SectionHeader } from "../components/SectionHeader"
-import { Exercises } from "../lib/exercises"
-import { getAssetsUrl } from "../services/supabase"
+import { Exercises, ExerciseTags } from "../lib/exercises"
+import { ExercisesFilter } from "../components/ExercisesFilter"
+import { useState } from "react"
+import { ExercisesCard } from "../components/ExercisesCard"
 
 export const ExercisesPage = () => {
   const navigate = useNavigate()
+  const [active, setActive] = useState("")
+
+  const exercisesFiltered = active
+    ? Exercises.filter((e) => e.tags.includes(active))
+    : Exercises
 
   return (
     <section>
-      <SectionHeader title="Exercises" description="My Club" />
+      <SectionHeader
+        title="Exercises"
+        description="List of exercises per type"
+      />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-2">
-        {Exercises.map(({ id, title, image, tags }) => (
-          <div
-            key={title}
-            className="bg-slate-200 p-4 rounded-md hover:cursor-pointer hover:opacity-75"
-            onClick={() => navigate(`/exercises/${id}`)}
-          >
-            <img src={getAssetsUrl(image)} />
+      <ExercisesFilter
+        active={active}
+        setActive={(filter: string) =>
+          setActive(active === filter ? "" : filter)
+        }
+        filters={ExerciseTags}
+        count={exercisesFiltered.length}
+      />
 
-            <h2 className="font-gtBold mt-4">{title}</h2>
-
-            <div className="flex flex-wrap gap-2 mt-2">
-              {tags.map((tag) => (
-                <Badge text={tag} key={tag} />
-              ))}
-            </div>
-          </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        {exercisesFiltered.map(({ id, title, image, tags }) => (
+          <ExercisesCard
+            title={title}
+            id={id}
+            tags={tags}
+            image={image}
+            navigate={navigate}
+            key={id}
+          />
         ))}
+
+        {exercisesFiltered.length === 0 && <p>No exercises for that filter</p>}
       </div>
     </section>
   )

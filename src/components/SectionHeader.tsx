@@ -15,39 +15,35 @@ export const SectionHeader = ({
   const navigate = useNavigate()
 
   return (
-    <div className="flex">
-      {showBackButton && (
-        <IconChevronLeft
-          className="text-projectBlue w-12 h-12 cursor-pointer hover:opacity-75"
-          stroke={2}
-          onClick={() => navigate(-1)}
-        />
-      )}
-
-      <div className="flex flex-col w-full mb-12">
-        <div className="flex">
-          <h1
-            className={`text-3xl text-projectBlue ${
-              breadcrumb ? "font-gtRegular" : "font-gtExtendedBold underline"
-            }`}
-          >
-            {title}
-            {breadcrumb ? " /" : ""}
-          </h1>
-
-          {breadcrumb && (
-            <h1 className="text-3xl text-projectBlue font-gtExtendedBold underline ml-2">
-              {breadcrumb}
-            </h1>
+    <div className="flex flex-col w-full mb-12">
+      <div className="flex">
+        <h1
+          className={`text-3xl text-projectBlue ${
+            breadcrumb
+              ? "font-gtRegular cursor-pointer hover:opacity-75 flex"
+              : "font-gtExtendedBold underline"
+          }`}
+          onClick={() => (breadcrumb ? navigate(-1) : null)}
+        >
+          {showBackButton && (
+            <IconChevronLeft className="w-10 h-10" stroke={2} />
           )}
-        </div>
+          {title}
+          {breadcrumb ? " /" : ""}
+        </h1>
 
-        {description && (
-          <h2 className="text-projectGreen font-gtMedium mt-2">
-            {description}
-          </h2>
+        {breadcrumb && (
+          <h1 className="text-3xl text-projectBlue font-gtExtendedBold underline ml-2">
+            {breadcrumb}
+          </h1>
         )}
       </div>
+
+      {description && (
+        <h2 className="text-2xl text-projectGreen font-gtMedium mt-2">
+          {description}
+        </h2>
+      )}
     </div>
   )
 }
