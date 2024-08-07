@@ -8,6 +8,7 @@ import { ReactNode } from "react"
 export type MesocycleType = {
   id: string
   icon: ReactNode
+  image: string
   name: string
   title: string
   concept: string
@@ -29,8 +30,9 @@ export type MesocycleType = {
 
 export const Mesocycles: MesocycleType[] = [
   {
-    id: "1",
+    id: "meso-1",
     icon: <IconCircleNumber1 color="#6bb8a4" width={48} height={48} />,
+    image: "methodology/methodology-blue.png",
     name: "Mesociclo 1",
     concept: "5-in-a-row Concept",
     title: "Master the 5-in-a-row Concept",
@@ -113,8 +115,9 @@ export const Mesocycles: MesocycleType[] = [
     ],
   },
   {
-    id: "2",
+    id: "meso-2",
     icon: <IconCircleNumber2 color="#6bb8a4" width={48} height={48} />,
+    image: "methodology/methodology-green.png",
     name: "Mesociclo 2",
     concept: "Transversal concepts in aerial and ground game",
     title: "Transversal concepts in aerial and ground game",
@@ -166,8 +169,9 @@ export const Mesocycles: MesocycleType[] = [
     ],
   },
   {
-    id: "3",
+    id: "meso-3",
     icon: <IconCircleNumber3 color="#6bb8a4" width={48} height={48} />,
+    image: "methodology/methodology-white.png",
     name: "Mesociclo 3",
     concept:
       "Mindset for attack, defense, and counter-attack, the Principle of Equity, Consistency and Speed",
