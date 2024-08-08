@@ -2,7 +2,7 @@ import { IconUserCircle } from "@tabler/icons-react"
 import { useAuth } from "../hooks/useAuth"
 
 export const UserInformation = () => {
-  const { user } = useAuth()
+  const { userData } = useAuth()
 
   return (
     <div className="flex items-center p-2 space-x-4 hover:cursor-pointer hover:bg-btn-background-hover/50 rounded-md">
@@ -16,7 +16,7 @@ export const UserInformation = () => {
       </div>
 
       <div>
-        <h2 className="text-md font-semibold">{user?.name}</h2>
+        <h2 className="text-md font-semibold">{userData?.name}</h2>
         <span className="flex items-center space-x-1">
           <a
             rel="noopener noreferrer"

@@ -5,11 +5,14 @@ import { Updates } from "../lib/updates"
 import { NewsCard } from "../components/NewsCard"
 
 export const MyClubPage = () => {
-  const { club } = useAuth()
+  const { clubData } = useAuth()
 
   return (
     <section>
-      <SectionHeader title={club?.name ?? "My Club"} description="My Club" />
+      <SectionHeader
+        title={clubData?.name ?? "My Club"}
+        description="My Club"
+      />
 
       <img src={MyClubLogo} alt="logo" />
 

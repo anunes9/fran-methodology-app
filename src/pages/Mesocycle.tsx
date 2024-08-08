@@ -21,15 +21,15 @@ export const MesocyclePage = () => {
 
       <img src={getAssetsUrl(mesocycle.image)} className="mb-8" />
 
-      <h1 className="text-3xl text-projectGreen font-gtExtendedBold underline">
+      <h1 className="text-xl md:text-3xl text-projectGreen font-gtExtendedBold underline">
         {mesocycle.title}
       </h1>
 
-      <span className="text-lg text-projectBlue font-gtExtended mt-4 block">
+      <span className="text-md md:text-lg text-projectBlue font-gtExtended mt-4 block">
         {mesocycle.description}
       </span>
 
-      <div className="grid grid-cols-3 gap-4 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
         <MesocycleCard
           icon={<IconClock width={24} height={24} color="#6bb8a4" />}
           text={`Duration: ${mesocycle.duration}`}
@@ -46,7 +46,7 @@ export const MesocyclePage = () => {
         />
       </div>
 
-      <h2 className="text-2xl text-projectGreen font-gtExtendedBold mt-10">
+      <h2 className="text-lg md:text-2xl text-projectGreen font-gtExtendedBold underline mt-10">
         Course Content
       </h2>
 

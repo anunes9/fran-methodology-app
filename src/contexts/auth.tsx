@@ -2,19 +2,21 @@ import { Session, User } from "@supabase/supabase-js"
 import { createContext, useState, useEffect, ReactNode } from "react"
 import { supabase } from "../services/supabase"
 
+type UserDataType = {
+  club_id: string
+  id: string
+  name: string
+}
+
+type ClubDataType = {
+  name: string
+}
+
 interface AuthContextType {
   session: Session | null
   user: User | null
-  // user?: {
-  //   club_id: string
-  //   id: string
-  //   name: string
-  // }
-  club?: {
-    name: string
-  }
-  // getClub: () => void
-  // getUser: () => void
+  userData: UserDataType | null
+  clubData: ClubDataType | null
   signOut: () => void
 }
 
@@ -22,6 +24,8 @@ export const AuthContext = createContext<AuthContextType>(null!)
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null)
+  const [userData, setUserData] = useState<UserDataType | null>(null)
+  const [clubData, setClubData] = useState<ClubDataType | null>(null)
   const [session, setSession] = useState<Session | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
 
@@ -31,6 +35,8 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         console.log("session onAuthStateChange: ", session)
         setSession(session)
         setUser(session?.user || null)
+        getUser()
+        getClub()
         setLoading(false)
       }
     )
@@ -49,31 +55,25 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     return { error }
   }
 
-  // const getUser = () => {
-  //   supabase
-  //     .from("users_app")
-  //     .select()
-  //     .single()
-  //     .then(({ data }) => {
-  //       console.log(data)
+  const getUser = () => {
+    supabase
+      .from("users_app")
+      .select()
+      .single()
+      .then(({ data }) => setUserData(data))
+  }
 
-  //       setUser(data)
-  //     })
-  // }
-
-  // const getClub = () => {
-  //   supabase
-  //     .from("clubs_app")
-  //     .select()
-  //     .single()
-  //     .then(({ data }) => {
-  //       setClub(data)
-  //     })
-  // }
+  const getClub = () => {
+    supabase
+      .from("clubs_app")
+      .select()
+      .single()
+      .then(({ data }) => setClubData(data))
+  }
 
   return (
     <AuthContext.Provider
-      value={{ session, user, signOut, club: { name: "club" } }}
+      value={{ session, user, signOut, clubData, userData }}
     >
       {!loading ? children : `<div>Loading...</div>`}
     </AuthContext.Provider>

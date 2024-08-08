@@ -16,31 +16,35 @@ export const SectionHeader = ({
 
   return (
     <div className="flex flex-col w-full mb-12">
-      <div className="flex">
+      <div className="flex items-center">
+        {showBackButton && (
+          <IconChevronLeft
+            className="w-10 h-8 md:h-10 bg-gray-200 rounded-md flex mr-2"
+            stroke={2}
+            onClick={() => (breadcrumb ? navigate(-1) : null)}
+          />
+        )}
+
         <h1
-          className={`text-3xl text-projectBlue ${
+          className={`text-xl md:text-3xl text-projectBlue ${
             breadcrumb
               ? "font-gtRegular cursor-pointer hover:opacity-75 flex"
               : "font-gtExtendedBold underline"
           }`}
-          onClick={() => (breadcrumb ? navigate(-1) : null)}
         >
-          {showBackButton && (
-            <IconChevronLeft className="w-10 h-10" stroke={2} />
-          )}
           {title}
-          {breadcrumb ? " /" : ""}
-        </h1>
+          {breadcrumb && " /"}
 
-        {breadcrumb && (
-          <h1 className="text-3xl text-projectBlue font-gtExtendedBold underline ml-2">
-            {breadcrumb}
-          </h1>
-        )}
+          {breadcrumb && (
+            <span className="font-gtExtendedBold underline ml-2">
+              {breadcrumb}
+            </span>
+          )}
+        </h1>
       </div>
 
       {description && (
-        <h2 className="text-2xl text-projectGreen font-gtMedium mt-2">
+        <h2 className="text-md md:text-2xl text-projectGreen font-gtMedium mt-2">
           {description}
         </h2>
       )}

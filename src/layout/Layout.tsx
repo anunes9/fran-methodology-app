@@ -7,6 +7,7 @@ import { useAuth } from "../hooks/useAuth"
 import { Navigate, Outlet, useNavigate } from "react-router-dom"
 import { LogoutButton } from "./LogoutButton"
 import { BetaBanner } from "../components/BetaBanner"
+import { Footer } from "./Footer"
 
 export const Layout = () => {
   const { session } = useAuth()
@@ -22,7 +23,7 @@ export const Layout = () => {
     <>
       <BetaBanner />
 
-      <div className="flex flex-col lg:grid lg:grid-cols-[300px_minmax(0,_1fr)] h-screen">
+      <div className="flex flex-col lg:grid lg:grid-cols-[300px_minmax(0,_1fr)]">
         <div className="border-r border-r-foreground/10">
           <MobileNavbar />
 
@@ -43,12 +44,14 @@ export const Layout = () => {
           </nav>
         </div>
 
-        <div className="flex-1 lg:block p-12">
-          <div className="m-auto max-w-screen-xl animate-in">
+        <div className="flex-1 lg:block">
+          <div className="m-auto max-w-screen-xl animate-in p-4 md:p-8 lg:p-12">
             <Outlet />
           </div>
         </div>
       </div>
+
+      <Footer />
     </>
   )
 }
