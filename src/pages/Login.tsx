@@ -12,6 +12,7 @@ export const LoginPage = () => {
 
   useEffect(() => {
     if (user) navigate("/club")
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
   return (
@@ -47,10 +48,10 @@ export const LoginPage = () => {
         />
 
         <div className="flex gap-2 mt-8">
-          <span>Don't have an account? </span>
+          <span>Don&apos;t have an account? </span>
           <a href={"/contact"}>
             <span className="text-projectGreen !font-semibold hover:underline hover:cursor-pointer">
-              Contact us here.
+              Contact us here
             </span>
           </a>
         </div>

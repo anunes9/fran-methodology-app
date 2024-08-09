@@ -12,12 +12,13 @@ export const PlanningPage = () => (
     />
 
     <div className="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-      {Mesocycles.map((meso) => (
+      {Mesocycles.map(({ id, name, icon, concept }) => (
         <Card
-          url={`planning/${meso.id}`}
-          title={meso.name}
-          icon={meso.icon}
-          subtitle={meso.concept}
+          key={id}
+          url={`planning/${id}`}
+          title={name}
+          icon={icon}
+          subtitle={concept}
         />
       ))}
 

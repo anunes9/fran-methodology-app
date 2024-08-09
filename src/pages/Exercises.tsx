@@ -36,6 +36,7 @@ export const ExercisesPage = () => {
       setIsLoading(false)
       setIndex((prevIndex) => prevIndex + LIMIT)
     }, 1500)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, isLoading])
 
   useEffect(() => {
@@ -61,6 +62,7 @@ export const ExercisesPage = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchData])
 
   return (

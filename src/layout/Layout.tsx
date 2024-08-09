@@ -15,6 +15,7 @@ export const Layout = () => {
 
   useEffect(() => {
     if (!session) navigate("/")
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session])
 
   if (!session) <Navigate to="/" replace />
