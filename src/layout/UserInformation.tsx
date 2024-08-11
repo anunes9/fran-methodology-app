@@ -20,7 +20,7 @@ export const UserInformation = () => {
         <span className="flex items-center space-x-1">
           <a
             rel="noopener noreferrer"
-            href="/club/profile"
+            href="/profile"
             className="text-xs hover:underline text-gray-600"
           >
             View profile

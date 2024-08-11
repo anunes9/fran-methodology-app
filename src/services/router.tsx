@@ -9,6 +9,7 @@ import { ExerciseItem } from "../pages/ExerciseItem"
 import { exerciseLoader } from "../loaders/exerciseLoader"
 import { MesocyclePage } from "../pages/Mesocycle"
 import { mesocycleLoader } from "../loaders/mesocycleLoader"
+import { Profile } from "../pages/Profile"
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
         path: "exercises/:id",
         element: <ExerciseItem />,
         loader: exerciseLoader,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
     ],
   },
