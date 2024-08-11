@@ -18,6 +18,7 @@ interface AuthContextType {
   userData: UserDataType | null
   clubData: ClubDataType | null
   signOut: () => void
+  updateUser: ({ name }: { name: string }) => Promise<void>
 }
 
 export const AuthContext = createContext<AuthContextType>(null!)
@@ -63,6 +64,19 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
       .then(({ data }) => setUserData(data))
   }
 
+  const updateUser = async ({ name }: { name: string }) => {
+    const { data, error } = await supabase
+      .from("users_app")
+      .update({
+        name: name,
+      })
+      .eq("id", session?.user?.id)
+      .select()
+
+    if (error) console.log("error", error)
+    if (data) setUserData(data[0])
+  }
+
   const getClub = () => {
     supabase
       .from("clubs_app")
@@ -73,7 +87,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ session, user, signOut, clubData, userData }}
+      value={{ session, user, signOut, clubData, userData, updateUser }}
     >
       {!loading ? children : `<div>Loading...</div>`}
     </AuthContext.Provider>
