@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom"
-import { LoginPage } from "../pages/Login"
+import { LoginPage } from "../pages/auth/Login"
 import { Layout } from "../layout/Layout"
 import { MyClubPage } from "../pages/MyClub"
 import { MethodologyPage } from "../pages/Methodology"
@@ -11,12 +11,22 @@ import { MesocyclePage } from "../pages/Mesocycle"
 import { mesocycleLoader } from "../loaders/mesocycleLoader"
 import { Settings } from "../pages/Settings"
 import { CalendarPage } from "../pages/Calendar"
+import { ForgotPasswordPage } from "../pages/auth/ForgotPassword"
+import { RecoverPage } from "../pages/auth/Recover"
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <LoginPage />,
     index: true,
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPasswordPage />,
+  },
+  {
+    path: "/recover",
+    element: <RecoverPage />,
   },
   {
     element: <Layout />,

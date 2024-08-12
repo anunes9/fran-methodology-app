@@ -1,9 +1,9 @@
-import FranMethodology from "../assets/fran-methodology.png"
+import FranMethodology from "../../assets/fran-methodology.png"
 import { ThemeSupa } from "@supabase/auth-ui-shared"
 import { Auth } from "@supabase/auth-ui-react"
-import { supabase } from "../services/supabase"
+import { supabase } from "../../services/supabase"
 import { useEffect } from "react"
-import { useAuth } from "../hooks/useAuth"
+import { useAuth } from "../../hooks/useAuth"
 import { useNavigate } from "react-router-dom"
 
 export const LoginPage = () => {
@@ -48,8 +48,16 @@ export const LoginPage = () => {
         />
 
         <div className="flex gap-2 mt-8">
+          <a href={"/forgot-password"}>
+            <span className="text-projectGreen !font-semibold hover:underline hover:cursor-pointer">
+              Forgot password
+            </span>
+          </a>
+        </div>
+
+        <div className="flex gap-2 mt-2">
           <span>Don&apos;t have an account? </span>
-          <a href={"/contact"}>
+          <a href="https://franpadelproject.com/contact">
             <span className="text-projectGreen !font-semibold hover:underline hover:cursor-pointer">
               Contact us here
             </span>

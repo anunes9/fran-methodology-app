@@ -7,6 +7,11 @@ export const Settings = () => {
   const { session, clubData } = useAuth()
   const { t, i18n } = useTranslation()
 
+  const updateLanguage = (lang: string) => {
+    i18n.changeLanguage(lang)
+    window.localStorage.setItem("lang", lang)
+  }
+
   return (
     <div className="flow-root">
       <SectionHeader
@@ -41,7 +46,7 @@ export const Settings = () => {
                   ? "font-gtBold bg-green-200"
                   : "font-gtRegular"
               } border px-2 rounded-md py-1 hover:bg-green-100 cursor-pointer`}
-              onClick={() => i18n.changeLanguage("en")}
+              onClick={() => updateLanguage("en")}
             >
               English
             </span>
@@ -54,7 +59,7 @@ export const Settings = () => {
                   ? "font-gtBold bg-green-200"
                   : "font-gtRegular"
               } border px-2 rounded-md py-1 hover:bg-green-100 cursor-pointer`}
-              onClick={() => i18n.changeLanguage("pt")}
+              onClick={() => updateLanguage("pt")}
             >
               Português
             </span>

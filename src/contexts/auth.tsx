@@ -1,6 +1,7 @@
 import { Session, User } from "@supabase/supabase-js"
 import { createContext, useState, useEffect, ReactNode } from "react"
 import { supabase } from "../services/supabase"
+import { useTranslation } from "react-i18next"
 
 type UserDataType = {
   club_id: string
@@ -19,6 +20,8 @@ interface AuthContextType {
   clubData: ClubDataType | null
   signOut: () => void
   updateUser: ({ name }: { name: string }) => Promise<void>
+  requestResetPassword: (email: string) => Promise<string | null>
+  updatePassword: (password: string) => Promise<string | null>
 }
 
 export const AuthContext = createContext<AuthContextType>(null!)
@@ -29,6 +32,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [clubData, setClubData] = useState<ClubDataType | null>(null)
   const [session, setSession] = useState<Session | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
+  const { i18n } = useTranslation()
 
   useEffect(() => {
     const { data: listener } = supabase.auth.onAuthStateChange(
@@ -44,6 +48,11 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => {
       listener?.subscription.unsubscribe()
     }
+  }, [])
+
+  useEffect(() => {
+    const lang = window?.localStorage.getItem("lang") || "pt"
+    i18n.changeLanguage(lang)
   }, [])
 
   const signOut = async () => {
@@ -77,6 +86,23 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (data) setUserData(data[0])
   }
 
+  const requestResetPassword = async (email: string) => {
+    const { error } = await supabase.auth.resetPasswordForEmail(email)
+
+    if (error) return "Something went wrong. Please try again."
+    return null
+  }
+
+  const updatePassword = async (password: string) => {
+    try {
+      await supabase.auth.updateUser({ password })
+
+      return null
+    } catch (error) {
+      return "Something went wrong. Please try again."
+    }
+  }
+
   const getClub = () => {
     supabase
       .from("clubs_app")
@@ -87,7 +113,16 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ session, user, signOut, clubData, userData, updateUser }}
+      value={{
+        session,
+        user,
+        signOut,
+        clubData,
+        userData,
+        updateUser,
+        requestResetPassword,
+        updatePassword,
+      }}
     >
       {!loading ? children : `<div>Loading...</div>`}
     </AuthContext.Provider>
