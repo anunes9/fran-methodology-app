@@ -8,10 +8,12 @@ import { Navigate, Outlet, useNavigate } from "react-router-dom"
 import { LogoutButton } from "./LogoutButton"
 import { BetaBanner } from "../components/BetaBanner"
 import { Footer } from "./Footer"
+import { useTranslation } from "react-i18next"
 
 export const Layout = () => {
   const { session } = useAuth()
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (!session) navigate("/")
@@ -30,8 +32,13 @@ export const Layout = () => {
 
           <nav className="hidden lg:block">
             <ul className="hidden lg:block mx-2 py-4 space-y-1 font-light">
-              {NavigationLinks.map(({ name, href, icon }, i) => (
-                <SidebarItem key={i} title={name} href={href} icon={icon} />
+              {NavigationLinks.map(({ name, tKey, href, icon }) => (
+                <SidebarItem
+                  key={name}
+                  title={t(tKey)}
+                  href={href}
+                  icon={icon}
+                />
               ))}
 
               <li>

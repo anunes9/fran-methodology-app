@@ -1,8 +1,10 @@
+import { useTranslation } from "react-i18next"
 import { useAuth } from "../hooks/useAuth"
 import { IconLogout } from "@tabler/icons-react"
 
 export const LogoutButton = () => {
   const { signOut } = useAuth()
+  const { t } = useTranslation()
 
   return (
     <button
@@ -10,7 +12,7 @@ export const LogoutButton = () => {
       onClick={signOut}
     >
       <IconLogout width={24} height={24} />
-      <span>Logout</span>
+      <span>{t("settings.logout")}</span>
     </button>
   )
 }

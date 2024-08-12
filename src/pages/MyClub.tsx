@@ -3,21 +3,23 @@ import { useAuth } from "../hooks/useAuth"
 import MyClubLogo from "../assets/my-club.png"
 import { Updates } from "../lib/updates"
 import { NewsCard } from "../components/NewsCard"
+import { useTranslation } from "react-i18next"
 
 export const MyClubPage = () => {
   const { clubData } = useAuth()
+  const { t } = useTranslation()
 
   return (
     <section>
       <SectionHeader
-        title={clubData?.name ?? "My Club"}
-        description="My Club"
+        title={clubData?.name ?? t("myClub.myClub")}
+        description={t("myClub.myClub")}
       />
 
       <img src={MyClubLogo} alt="logo" />
 
       <h1 className="text-2xl text-projectBlue font-gtExtendedBold underline mt-12">
-        Latest Updates
+        {t("myClub.latestUpdates")}
       </h1>
 
       <div className="grid grid-cols-1 gap-4 max-w-screen lg:w-3/4 mt-8">

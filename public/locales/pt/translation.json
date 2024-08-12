@@ -1,0 +1,24 @@
+{
+  "myClub": {
+    "myClub": "O meu clube",
+    "latestUpdates": "Últimas atualizações"
+  },
+  "settings": {
+    "settings": "Definições",
+    "myDetails": "Os meus detalhes",
+    "name": "Nome",
+    "email": "Email",
+    "club": "Clube",
+    "language": "Linguagem",
+    "logout": "Sair"
+  },
+  "methodology": {
+    "methodology": "Metodologia"
+  },
+  "planning": {
+    "planning": "Planeamento"
+  },
+  "exercises": {
+    "exercises": "Exercícios"
+  }
+}
