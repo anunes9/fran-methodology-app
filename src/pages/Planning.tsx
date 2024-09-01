@@ -38,6 +38,14 @@ export const PlanningPage = () => (
         variant="white"
       />
 
+      <Card
+        url={`${getAssetsUrl("FranMethodology-Meso5-6.pdf")}?download`}
+        icon={<img src={DownloadIcon} height={32} width={32} />}
+        title="Mesocycle 5-6"
+        subtitle="Download"
+        variant="white"
+      />
+
       <Card url="planning/lessons" title="Example Lesson" variant="white" />
     </div>
   </section>
