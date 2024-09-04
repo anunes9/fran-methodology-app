@@ -42,7 +42,7 @@ export const MesocyclePage = () => {
 
         <MesocycleCard
           icon={<IconCalendarDot width={24} height={24} color="#6bb8a4" />}
-          text={mesocycle.name}
+          text={mesocycle.title}
         />
       </div>
 
