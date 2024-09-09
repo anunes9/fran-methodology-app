@@ -18,6 +18,7 @@ interface AuthContextType {
   user: User | null
   userData: UserDataType | null
   clubData: ClubDataType | null
+  language: string
   signOut: () => void
   updateUser: ({ name }: { name: string }) => Promise<void>
   requestResetPassword: (email: string) => Promise<string | null>
@@ -37,7 +38,6 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const { data: listener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
-        console.log("session onAuthStateChange: ", session)
         setSession(session)
         setUser(session?.user || null)
         getUser()
@@ -119,6 +119,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         signOut,
         clubData,
         userData,
+        language: i18n.language,
         updateUser,
         requestResetPassword,
         updatePassword,

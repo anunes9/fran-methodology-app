@@ -19,7 +19,7 @@ export const SectionHeader = ({
       <div className="flex items-center">
         {showBackButton && (
           <IconChevronLeft
-            className="w-10 h-8 md:h-10 bg-gray-200 rounded-md flex mr-2"
+            className="w-10 h-8 md:h-10 bg-gray-200 rounded-md flex mr-2 cursor-pointer hover:opacity-75"
             stroke={2}
             onClick={() => (breadcrumb ? navigate(-1) : null)}
           />

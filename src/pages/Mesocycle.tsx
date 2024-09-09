@@ -15,14 +15,14 @@ export const MesocyclePage = () => {
     <section>
       <SectionHeader
         title="Planning"
-        breadcrumb={mesocycle.name}
+        breadcrumb={mesocycle.title}
         showBackButton
       />
 
       <img src={getAssetsUrl(mesocycle.image)} className="mb-8" />
 
       <h1 className="text-xl md:text-3xl text-projectGreen font-gtExtendedBold underline">
-        {mesocycle.title}
+        {mesocycle.title} - {mesocycle.concept}
       </h1>
 
       <span className="text-md md:text-lg text-projectBlue font-gtExtended mt-4 block">

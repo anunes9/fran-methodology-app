@@ -4,8 +4,10 @@ import { CMSClient } from "../../sanity.config"
 export const mesocycleLoader = async (
   args: LoaderFunctionArgs<unknown>
 ): Promise<unknown> => {
-  return CMSClient.fetch(
-    `*[_type == "mesocycle" && slug == "${args.params.id}"]{
+  const lang = window?.localStorage.getItem("lang") || "pt"
+
+  const r = await CMSClient.fetch(
+    `*[_type == "mesocycle" && slug == "${args.params.id}" && language == "${lang}"][0]{
       _id,
       title,
       slug,
@@ -13,9 +15,10 @@ export const mesocycleLoader = async (
       duration,
       concept,
       details,
-      level
+      level,
+      image
     }`
   )
-    .then((r) => (r.length > 0 ? r[0] : null))
-    .catch(() => null)
+
+  return r
 }

@@ -4,23 +4,22 @@ import { getAssetsUrl } from "../services/supabase"
 import DownloadIcon from "../assets/download.png"
 import { useEffect, useState } from "react"
 import { CMSClient } from "../../sanity.config"
+import { useAuth } from "../hooks/useAuth"
 
 export const PlanningPage = () => {
-  const [mesos, setMesos] = useState([])
+  const [data, setData] = useState([])
+  const { language } = useAuth()
 
   useEffect(() => {
     CMSClient.fetch(
-      `*[_type == "mesocycle"]{
+      `*[_type == "mesocycle" && language == "${language}"] | order(title) {
       _id,
-      title,
       slug,
-      description,
-      duration,
-      concept,
-      details
+      title,
+      concept
     }`
     )
-      .then((data) => setMesos(data))
+      .then((data) => setData(data))
       .catch(console.error)
   }, [])
 
@@ -32,7 +31,7 @@ export const PlanningPage = () => {
       />
 
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-        {mesos.map(({ slug, title, concept }) => (
+        {data.map(({ slug, title, concept }) => (
           <Card
             key={slug}
             url={`planning/${slug}`}
