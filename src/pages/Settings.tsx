@@ -3,6 +3,9 @@ import { useAuth } from "../hooks/useAuth"
 import { UserName } from "../components/Profile/UserName"
 import { useTranslation } from "react-i18next"
 
+const PRIVACY_POLICY_URL = "https://www.franpadelproject.com/privacy-policy"
+const TERMS_OF_SERVICE_URL = "https://www.franpadelproject.com/terms-of-service"
+
 export const Settings = () => {
   const { session, clubData } = useAuth()
   const { t, i18n } = useTranslation()
@@ -66,6 +69,26 @@ export const Settings = () => {
           </dd>
         </div>
       </dl>
+
+      <div className="flex flex-col gap-4 border-t border-t-foreground/10 py-4 my-8">
+        <a
+          href={PRIVACY_POLICY_URL}
+          className="text-sm font-medium text-gray-700 hover:underline hover:font-gtBold"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {t("settings.privacyPolicy")}
+        </a>
+
+        <a
+          href={TERMS_OF_SERVICE_URL}
+          className="text-sm font-medium text-gray-700 hover:underline  hover:font-gtBold"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {t("settings.termsOfService")}
+        </a>
+      </div>
     </div>
   )
 }

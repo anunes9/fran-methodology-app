@@ -10,7 +10,9 @@
     "email": "Email",
     "club": "Club",
     "language": "Language",
-    "logout": "Logout"
+    "logout": "Logout",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
   },
   "methodology": {
     "methodology": "Methodology"
