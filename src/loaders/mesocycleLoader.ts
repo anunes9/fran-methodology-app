@@ -1,10 +1,24 @@
 import { LoaderFunctionArgs } from "react-router-dom"
-import { Mesocycles } from "../lib/mesocycles"
+import { CMSClient } from "../../sanity.config"
 
 export const mesocycleLoader = async (
   args: LoaderFunctionArgs<unknown>
 ): Promise<unknown> => {
-  const mesocycle = Mesocycles.find(({ id }) => id === args.params.id)
+  const lang = window?.localStorage.getItem("lang") || "pt"
 
-  return mesocycle || null
+  const r = await CMSClient.fetch(
+    `*[_type == "mesocycle" && slug == "${args.params.id}" && language == "${lang}"][0]{
+      _id,
+      title,
+      slug,
+      description,
+      duration,
+      concept,
+      details,
+      level,
+      image
+    }`
+  )
+
+  return r
 }

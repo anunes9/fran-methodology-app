@@ -4,13 +4,15 @@
     "latestUpdates": "Latest Updates"
   },
   "settings": {
-    "settings": "Setting",
+    "settings": "Settings",
     "myDetails": "My Details",
     "name": "Name",
     "email": "Email",
     "club": "Club",
     "language": "Language",
-    "logout": "Logout"
+    "logout": "Logout",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
   },
   "methodology": {
     "methodology": "Methodology"

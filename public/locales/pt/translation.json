@@ -10,7 +10,9 @@
     "email": "Email",
     "club": "Clube",
     "language": "Linguagem",
-    "logout": "Sair"
+    "logout": "Sair",
+    "privacyPolicy": "Política de privacidade",
+    "termsOfService": "Termos de serviço"
   },
   "methodology": {
     "methodology": "Metodologia"

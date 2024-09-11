@@ -15,14 +15,14 @@ export const MesocyclePage = () => {
     <section>
       <SectionHeader
         title="Planning"
-        breadcrumb={mesocycle.name}
+        breadcrumb={mesocycle.title}
         showBackButton
       />
 
       <img src={getAssetsUrl(mesocycle.image)} className="mb-8" />
 
       <h1 className="text-xl md:text-3xl text-projectGreen font-gtExtendedBold underline">
-        {mesocycle.title}
+        {mesocycle.title} - {mesocycle.concept}
       </h1>
 
       <span className="text-md md:text-lg text-projectBlue font-gtExtended mt-4 block">
@@ -42,7 +42,7 @@ export const MesocyclePage = () => {
 
         <MesocycleCard
           icon={<IconCalendarDot width={24} height={24} color="#6bb8a4" />}
-          text={mesocycle.name}
+          text={mesocycle.title}
         />
       </div>
 
