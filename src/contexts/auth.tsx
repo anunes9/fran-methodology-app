@@ -7,6 +7,8 @@ type UserDataType = {
   club_id: string
   id: string
   name: string
+  subscription_pack: string
+  avatar_url: string
 }
 
 type ClubDataType = {

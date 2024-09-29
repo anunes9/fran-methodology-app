@@ -14,12 +14,20 @@ export const UserInformation = () => {
       onClick={() => navigate("/profile")}
     >
       <div className="rounded-lg bg-gray-200 stroke-gray-500 w-9 h-9 flex justify-center items-center">
-        <IconUserCircle
-          width={28}
-          height={28}
-          stroke={1.2}
-          className="stroke-gray-600"
-        />
+        {userData?.avatar_url ? (
+          <img
+            src={userData?.avatar_url}
+            alt="avatar"
+            className="w-9 h-9 rounded-sm object-cover"
+          />
+        ) : (
+          <IconUserCircle
+            width={28}
+            height={28}
+            stroke={1.2}
+            className="stroke-gray-600"
+          />
+        )}
       </div>
 
       <div>

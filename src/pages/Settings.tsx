@@ -7,7 +7,7 @@ const PRIVACY_POLICY_URL = "https://www.franpadelproject.com/privacy-policy"
 const TERMS_OF_SERVICE_URL = "https://www.franpadelproject.com/terms-of-service"
 
 export const Settings = () => {
-  const { session, clubData } = useAuth()
+  const { session, clubData, userData } = useAuth()
   const { t, i18n } = useTranslation()
 
   const updateLanguage = (lang: string) => {
@@ -36,6 +36,15 @@ export const Settings = () => {
         <div className="grid grid-cols-1 gap-1 py-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
           <dt className="font-medium text-gray-900">{t("settings.club")}</dt>
           <dd className="text-gray-700 sm:col-span-2">{clubData?.name}</dd>
+        </div>
+
+        <div className="grid grid-cols-1 gap-1 py-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
+          <dt className="font-medium text-gray-900">
+            {t("settings.subscriptionPack")}
+          </dt>
+          <dd className="text-gray-700 sm:col-span-2">
+            {userData?.subscription_pack}
+          </dd>
         </div>
 
         <div className="grid grid-cols-1 gap-1 py-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
@@ -70,7 +79,7 @@ export const Settings = () => {
         </div>
       </dl>
 
-      <div className="flex flex-col gap-4 border-t border-t-foreground/10 py-4 my-8">
+      <div className="flex flex-col gap-4 border-t border-t-foreground/10 py-4 mt-8">
         <a
           href={PRIVACY_POLICY_URL}
           className="text-sm font-medium text-gray-700 hover:underline hover:font-gtBold"

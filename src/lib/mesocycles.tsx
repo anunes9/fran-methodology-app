@@ -22,3 +22,15 @@ export type MesocycleType = {
     }
   }[]
 }
+
+export interface Level {
+  name: string
+}
+
+export interface MesocycleData {
+  _id: string
+  slug: string
+  title: string
+  concept: string
+  level?: Level
+}

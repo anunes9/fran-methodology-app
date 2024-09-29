@@ -30,7 +30,7 @@ export const Layout = () => {
         <div className="border-r border-r-foreground/10">
           <MobileNavbar />
 
-          <nav className="hidden lg:block">
+          <nav className="hidden lg:block h-[90vh]">
             <ul className="hidden lg:block mx-2 py-4 space-y-1 font-light">
               {NavigationLinks.map(({ name, tKey, href, icon }) => (
                 <SidebarItem
@@ -49,6 +49,10 @@ export const Layout = () => {
             <div className="border-t border-t-foreground/10 px-2 py-4 mt-8">
               <UserInformation />
             </div>
+
+            <div className="border-t border-t-foreground/10 px-2 py-4">
+              <Footer />
+            </div>
           </nav>
         </div>
 
@@ -59,7 +63,9 @@ export const Layout = () => {
         </div>
       </div>
 
-      <Footer />
+      <div className="lg:hidden border-t border-t-foreground/10 py-4">
+        <Footer />
+      </div>
     </>
   )
 }

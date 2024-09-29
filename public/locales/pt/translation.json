@@ -12,13 +12,19 @@
     "language": "Linguagem",
     "logout": "Sair",
     "privacyPolicy": "Política de privacidade",
-    "termsOfService": "Termos de serviço"
+    "termsOfService": "Termos de serviço",
+    "subscriptionPack": "Pacote subscrito"
   },
   "methodology": {
     "methodology": "Metodologia"
   },
   "planning": {
-    "planning": "Planeamento"
+    "planning": "Planeamento",
+    "subtitle": "Mesociclos, aulas e cursos de treino",
+    "beginner": "Iniciante",
+    "intermediate": "Intermedio",
+    "advanced": "Avançado",
+    "supportDocuments": "Documentos de Suporte"
   },
   "exercises": {
     "exercises": "Exercícios"

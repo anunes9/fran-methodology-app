@@ -8,9 +8,13 @@ import Logo from "../assets/logo_green.svg"
 import { IconMenu, IconX } from "@tabler/icons-react"
 import { NavigationLinks } from "../lib/navigation-links"
 import { LogoutButton } from "./LogoutButton"
+import { useAuth } from "../hooks/useAuth"
+import { useTranslation } from "react-i18next"
 
 export const MobileNavbar = () => {
   const location = useLocation()
+  const { userData } = useAuth()
+  const { t } = useTranslation()
 
   return (
     <Disclosure as="nav" className="bg-projectBlue">
@@ -55,7 +59,7 @@ export const MobileNavbar = () => {
                   className={`${
                     location.pathname === href
                       ? "bg-gray-900 text-white"
-                      : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                      : "text-gray-300"
                   } p-4 font-light
                   `}
                   aria-current={location.pathname === href ? "page" : undefined}
@@ -70,6 +74,34 @@ export const MobileNavbar = () => {
               <div className="p-2">
                 <LogoutButton />
               </div>
+
+              <DisclosureButton
+                as="a"
+                href="/profile"
+                className={`${
+                  location.pathname === "/profile"
+                    ? "bg-gray-900 text-white"
+                    : "text-gray-300"
+                } p-4 font-light
+                  `}
+                aria-current={
+                  location.pathname === "/profile" ? "page" : undefined
+                }
+              >
+                <div className="flex items-center gap-4">
+                  <img
+                    src={userData?.avatar_url}
+                    alt="avatar"
+                    className="w-8 h-8 rounded-sm object-cover"
+                  />
+                  <div className="flex flex-col">
+                    {userData?.name}
+                    <span className="text-xs text-gray-300">
+                      {t("settings.settings")}
+                    </span>
+                  </div>
+                </div>
+              </DisclosureButton>
             </div>
           </DisclosurePanel>
         </>

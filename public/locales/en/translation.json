@@ -12,13 +12,19 @@
     "language": "Language",
     "logout": "Logout",
     "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service"
+    "termsOfService": "Terms of Service",
+    "subscriptionPack": "Subscription Pack"
   },
   "methodology": {
     "methodology": "Methodology"
   },
   "planning": {
-    "planning": "Planning"
+    "planning": "Planning",
+    "subtitle": "Mesocycles, lessons and training courses",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "supportDocuments": "Support Documents"
   },
   "exercises": {
     "exercises": "Exercises"
