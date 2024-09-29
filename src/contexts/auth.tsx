@@ -10,6 +10,7 @@ type UserDataType = {
   subscription_pack: string
   avatar_url: string
   club_name: string
+  club_banner_url: string
 }
 
 interface AuthContextType {

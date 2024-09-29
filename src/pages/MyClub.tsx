@@ -16,7 +16,15 @@ export const MyClubPage = () => {
         description={t("myClub.myClub")}
       />
 
-      <img src={MyClubLogo} alt="logo" />
+      {userData?.club_banner_url ? (
+        <img
+          src={userData?.club_banner_url}
+          alt="banner"
+          className="w-full h-64 object-cover"
+        />
+      ) : (
+        <img src={MyClubLogo} alt="logo" className="w-full h-64 object-cover" />
+      )}
 
       <h1 className="text-2xl text-projectBlue font-gtExtendedBold underline mt-12">
         {t("myClub.latestUpdates")}
