@@ -7,7 +7,7 @@ const PRIVACY_POLICY_URL = "https://www.franpadelproject.com/privacy-policy"
 const TERMS_OF_SERVICE_URL = "https://www.franpadelproject.com/terms-of-service"
 
 export const Settings = () => {
-  const { session, clubData, userData } = useAuth()
+  const { session, userData } = useAuth()
   const { t, i18n } = useTranslation()
 
   const updateLanguage = (lang: string) => {
@@ -35,7 +35,7 @@ export const Settings = () => {
 
         <div className="grid grid-cols-1 gap-1 py-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
           <dt className="font-medium text-gray-900">{t("settings.club")}</dt>
-          <dd className="text-gray-700 sm:col-span-2">{clubData?.name}</dd>
+          <dd className="text-gray-700 sm:col-span-2">{userData?.club_name}</dd>
         </div>
 
         <div className="grid grid-cols-1 gap-1 py-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">

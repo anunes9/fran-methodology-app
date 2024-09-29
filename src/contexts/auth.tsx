@@ -9,17 +9,13 @@ type UserDataType = {
   name: string
   subscription_pack: string
   avatar_url: string
-}
-
-type ClubDataType = {
-  name: string
+  club_name: string
 }
 
 interface AuthContextType {
   session: Session | null
   user: User | null
   userData: UserDataType | null
-  clubData: ClubDataType | null
   language: string
   signOut: () => void
   updateUser: ({ name }: { name: string }) => Promise<void>
@@ -32,7 +28,6 @@ export const AuthContext = createContext<AuthContextType>(null!)
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null)
   const [userData, setUserData] = useState<UserDataType | null>(null)
-  const [clubData, setClubData] = useState<ClubDataType | null>(null)
   const [session, setSession] = useState<Session | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const { i18n } = useTranslation()
@@ -43,7 +38,6 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         setSession(session)
         setUser(session?.user || null)
         getUser()
-        getClub()
         setLoading(false)
       }
     )
@@ -105,21 +99,12 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }
 
-  const getClub = () => {
-    supabase
-      .from("clubs_app")
-      .select()
-      .single()
-      .then(({ data }) => setClubData(data))
-  }
-
   return (
     <AuthContext.Provider
       value={{
         session,
         user,
         signOut,
-        clubData,
         userData,
         language: i18n.language,
         updateUser,

@@ -6,13 +6,13 @@ import { NewsCard } from "../components/NewsCard"
 import { useTranslation } from "react-i18next"
 
 export const MyClubPage = () => {
-  const { clubData } = useAuth()
+  const { userData } = useAuth()
   const { t } = useTranslation()
 
   return (
     <section>
       <SectionHeader
-        title={clubData?.name ?? t("myClub.myClub")}
+        title={userData?.club_name ?? t("myClub.myClub")}
         description={t("myClub.myClub")}
       />
 
