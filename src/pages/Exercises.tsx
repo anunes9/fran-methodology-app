@@ -5,11 +5,13 @@ import { useNavigate } from "react-router-dom"
 import { SectionHeader } from "../components/SectionHeader"
 import { ExercisesFilter } from "../components/ExercisesFilter"
 import { Loader } from "../components/Loader"
+import { useTranslation } from "react-i18next"
 
 const INITIAL_INDEX = 12
 const LIMIT = 6
 
 export const ExercisesPage = () => {
+  const { t } = useTranslation()
   const [items, setItems] = useState([] as ExerciseType[])
   const [isLoading, setIsLoading] = useState(true)
   const [index, setIndex] = useState(INITIAL_INDEX)
@@ -68,8 +70,8 @@ export const ExercisesPage = () => {
   return (
     <section>
       <SectionHeader
-        title="Exercises"
-        description="List of exercises per type"
+        title={t("exercises.exercises")}
+        description={t("exercises.exercisesPerType")}
       />
 
       <ExercisesFilter

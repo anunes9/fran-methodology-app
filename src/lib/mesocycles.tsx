@@ -34,3 +34,11 @@ export interface MesocycleData {
   concept: string
   level?: Level
 }
+
+export interface ExerciseData {
+  _id: string
+  slug: string
+  title: string
+  description: string
+  imageUrl: string
+}

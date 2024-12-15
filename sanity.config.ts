@@ -1,7 +1,10 @@
 import { createClient } from "@sanity/client"
 
+const projectId = import.meta.env.VITE_SANITY_PROJECT_ID
+const dataset = import.meta.env.VITE_SANITY_PROJECT_DATASET
+
 export const CMSClient = createClient({
-  projectId: import.meta.env.VITE_SANITY_PROJECT_ID,
-  dataset: import.meta.env.VITE_SANITY_PROJECT_DATASET,
+  projectId,
+  dataset,
   useCdn: true,
 })

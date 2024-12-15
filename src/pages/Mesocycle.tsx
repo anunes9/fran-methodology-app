@@ -1,27 +1,44 @@
 import { Navigate, useLoaderData } from "react-router-dom"
 import { SectionHeader } from "../components/SectionHeader"
-import { getAssetsUrl } from "../services/supabase"
-import { MesocycleType } from "../lib/mesocycles"
-import { IconCalendarDot, IconClock, IconTarget } from "@tabler/icons-react"
+import { ExerciseData, MesocycleType } from "../lib/mesocycles"
+import { IconClock, IconTarget } from "@tabler/icons-react"
 import { MesocycleCard } from "../components/MesocycleCard"
 import { MesocycleDetails } from "../components/MesocycleDetails"
+import { useTranslation } from "react-i18next"
+import { useEffect, useState } from "react"
+import { ExerciseImage } from "../components/ExerciseImage"
+import { CMSClient } from "../../sanity.config"
 
 export const MesocyclePage = () => {
   const mesocycle = useLoaderData() as unknown as MesocycleType
+  const { t } = useTranslation()
+  const [tab, setTab] = useState(0)
+  const [exercises, setExercises] = useState([] as ExerciseData[])
+
+  useEffect(() => {
+    CMSClient.fetch(
+      `*[_type == "exercise" && mesocycle == "${mesocycle.slug}"]{
+      _id,
+      slug,
+      title,
+      "imageUrl": image.asset->url
+    }`
+    )
+      .then((data) => setExercises(data))
+      .catch(console.error)
+  }, [mesocycle])
 
   if (!mesocycle) return <Navigate to="/not-found" />
 
   return (
     <section>
       <SectionHeader
-        title="Planning"
+        title={t("planning.planning")}
         breadcrumb={mesocycle.title}
         showBackButton
       />
 
-      <img src={getAssetsUrl(mesocycle.image)} className="mb-8" />
-
-      <h1 className="text-xl md:text-3xl text-projectGreen font-gtExtendedBold underline">
+      <h1 className="text-xl md:text-3xl text-projectBlue font-gtExtendedBold underline">
         {mesocycle.title} - {mesocycle.concept}
       </h1>
 
@@ -32,35 +49,40 @@ export const MesocyclePage = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
         <MesocycleCard
           icon={<IconClock width={24} height={24} color="#6bb8a4" />}
-          text={`Duration: ${mesocycle.duration}`}
+          text={t("planning.theoryContent")}
+          onClick={() => setTab(0)}
+          selected={tab === 0}
         />
 
         <MesocycleCard
           icon={<IconTarget width={24} height={24} color="#6bb8a4" />}
-          text={`Concept: ${mesocycle.concept}`}
-        />
-
-        <MesocycleCard
-          icon={<IconCalendarDot width={24} height={24} color="#6bb8a4" />}
-          text={mesocycle.title}
+          text={t("exercises.exercises")}
+          onClick={() => setTab(1)}
+          selected={tab === 1}
         />
       </div>
 
-      <h2 className="text-lg md:text-2xl text-projectGreen font-gtExtendedBold underline mt-10">
-        Course Content
-      </h2>
+      {tab === 0 && (
+        <div className="flex flex-col gap-4 lg:gap-8 mt-8">
+          {mesocycle.details.map((d, i) => (
+            <MesocycleDetails
+              key={i}
+              title={d.title}
+              description={d.description}
+              details={d.details}
+              section={d.section}
+            />
+          ))}
+        </div>
+      )}
 
-      <div className="flex flex-col gap-4 lg:gap-8 mt-8">
-        {mesocycle.details.map((d, i) => (
-          <MesocycleDetails
-            key={i}
-            title={d.title}
-            description={d.description}
-            details={d.details}
-            section={d.section}
-          />
-        ))}
-      </div>
+      {tab === 1 && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
+          {exercises.map((a) => (
+            <ExerciseImage key={a.slug} title={a.title} image={a.imageUrl} />
+          ))}
+        </div>
+      )}
     </section>
   )
 }

@@ -16,7 +16,8 @@
     "subscriptionPack": "Subscription Pack"
   },
   "methodology": {
-    "methodology": "Methodology"
+    "methodology": "Methodology",
+    "conceptsAndDocumentation": "Concepts and Documentation"
   },
   "planning": {
     "planning": "Planning",
@@ -24,9 +25,12 @@
     "beginner": "Beginner",
     "intermediate": "Intermediate",
     "advanced": "Advanced",
-    "supportDocuments": "Support Documents"
+    "supportDocuments": "Support Documents",
+    "courseContent": "Course Content",
+    "theoryContent": "Theory Content"
   },
   "exercises": {
-    "exercises": "Exercises"
+    "exercises": "Exercises",
+    "exercisesPerType": "List of exercises per type"
   }
 }

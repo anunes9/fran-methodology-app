@@ -4,7 +4,7 @@ import FR_LOGO from "../assets/fr-logo.svg"
 export const Footer = () => (
   <footer className="flex flex-col justify-center items-center gap-2">
     <div className="flex justify-center items-center gap-4">
-      <a href="https://anunes9.github.io/me/" target="_blank" rel="noreferrer">
+      <a href="https://franpadelproject.com" target="_blank" rel="noreferrer">
         <img alt="fran-logo" src={FR_LOGO} height={36} width={36} />
       </a>
 
