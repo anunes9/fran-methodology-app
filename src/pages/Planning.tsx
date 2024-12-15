@@ -23,17 +23,18 @@ export const PlanningPage = () => {
     else if (userData?.subscription_pack === "Advanced")
       levelQuery = `level->name == "Beginner" || level->name == "Intermediate" || level->name == "Advanced"`
 
-    CMSClient.fetch(
-      `*[_type == "mesocycle" && language == "${language}" && (${levelQuery})] | order(title) {
-      _id,
-      slug,
-      title,
-      concept,
-      level -> { name }
-    }`
-    )
-      .then((data) => setData(data))
-      .catch(console.error)
+    if (levelQuery)
+      CMSClient.fetch(
+        `*[_type == "mesocycle" && language == "${language}" && (${levelQuery})] | order(title) {
+        _id,
+        slug,
+        title,
+        concept,
+        level -> { name }
+      }`
+      )
+        .then((data) => setData(data))
+        .catch(console.error)
   }, [userData])
 
   return (
@@ -48,7 +49,7 @@ export const PlanningPage = () => {
         data={data.filter(({ level }) =>
           level ? level?.name === "Beginner" : false
         )}
-        blocked={userData?.subscription_pack !== "Beginner"}
+        blocked={false}
       />
 
       <PlanningGrid
@@ -56,7 +57,7 @@ export const PlanningPage = () => {
         data={data.filter(({ level }) =>
           level ? level?.name === "Intermediate" : false
         )}
-        blocked={userData?.subscription_pack !== "Intermediate"}
+        blocked={userData?.subscription_pack === "Beginner"}
       />
 
       <PlanningGrid
@@ -64,7 +65,7 @@ export const PlanningPage = () => {
         data={data.filter(({ level }) =>
           level ? level?.name === "Advanced" : false
         )}
-        blocked={userData?.subscription_pack !== "Advanced"}
+        blocked={userData?.subscription_pack === "Intermediate"}
       />
 
       <h2 className="text-md md:text-xl text-projectBlue font-gtExtendedBold underline mt-12">

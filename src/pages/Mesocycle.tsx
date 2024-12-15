@@ -39,7 +39,7 @@ export const MesocyclePage = () => {
       />
 
       <h1 className="text-xl md:text-3xl text-projectBlue font-gtExtendedBold underline">
-        {mesocycle.title} - {mesocycle.concept}
+        {mesocycle.concept}
       </h1>
 
       <span className="text-md md:text-lg text-projectBlue font-gtExtended mt-4 block">
