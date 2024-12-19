@@ -70,7 +70,6 @@ export const MesocyclePage = () => {
               title={d.title}
               description={d.description}
               details={d.details}
-              section={d.section}
             />
           ))}
         </div>

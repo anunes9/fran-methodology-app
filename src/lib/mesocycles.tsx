@@ -15,11 +15,6 @@ export type MesocycleType = {
     title: string
     description?: string
     details: string[]
-    section?: {
-      title: string
-      description?: string
-      details: string[]
-    }
   }[]
 }
 
