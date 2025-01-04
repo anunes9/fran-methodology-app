@@ -37,3 +37,11 @@ export interface ExerciseData {
   description: string
   imageUrl: string
 }
+
+export interface VideoData {
+  _id: string
+  slug: string
+  title: string
+  description: string
+  source: string
+}

@@ -7,11 +7,11 @@ import { useAuth } from "../../hooks/useAuth"
 import { useNavigate } from "react-router-dom"
 
 export const LoginPage = () => {
-  const { user } = useAuth()
+  const { user, userData } = useAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (user) navigate("/club")
+    if (user && userData?.active) navigate("/club")
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 

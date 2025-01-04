@@ -20,7 +20,7 @@
     "conceptsAndDocumentation": "Conceitos e Documentação"
   },
   "planning": {
-    "planning": "Planeamento",
+    "planning": "Mesociclos",
     "subtitle": "Mesociclos, aulas e cursos de treino",
     "beginner": "Iniciante",
     "intermediate": "Intermedio",
@@ -31,6 +31,11 @@
   },
   "exercises": {
     "exercises": "Exercícios",
-    "exercisesPerType": "Lista de exercícios por tipo"
+    "exercisesPerType": "Lista de exercícios por tipo",
+    "videos": "Videos"
+  },
+  "documents": {
+    "documents": "Documentos",
+    "subtitle": "Documentos de Suporte"
   }
 }

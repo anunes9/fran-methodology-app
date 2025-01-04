@@ -1,7 +1,4 @@
-import { Card } from "../components/Card"
 import { SectionHeader } from "../components/SectionHeader"
-import { getAssetsUrl } from "../services/supabase"
-import DownloadIcon from "../assets/download.png"
 import { useEffect, useState } from "react"
 import { CMSClient } from "../../sanity.config"
 import { useAuth } from "../hooks/useAuth"
@@ -67,38 +64,6 @@ export const PlanningPage = () => {
         )}
         blocked={userData?.subscription_pack === "Intermediate"}
       />
-
-      <h2 className="text-md md:text-xl text-projectBlue font-gtExtendedBold underline mt-12">
-        {t("planning.supportDocuments")}
-      </h2>
-
-      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-8">
-        <Card
-          url={`${getAssetsUrl("FranMethodology-Meso1-2.pdf")}?download`}
-          icon={<img src={DownloadIcon} height={32} width={32} />}
-          title="Mesocycle 1-2"
-          subtitle="Download"
-          variant="white"
-        />
-
-        <Card
-          url={`${getAssetsUrl("FranMethodology-Meso3-4.pdf")}?download`}
-          icon={<img src={DownloadIcon} height={32} width={32} />}
-          title="Mesocycle 3-4"
-          subtitle="Download"
-          variant="white"
-        />
-
-        <Card
-          url={`${getAssetsUrl("FranMethodology-Meso5-6.pdf")}?download`}
-          icon={<img src={DownloadIcon} height={32} width={32} />}
-          title="Mesocycle 5-6"
-          subtitle="Download"
-          variant="white"
-        />
-
-        <Card url="planning/lessons" title="Example Lesson" variant="white" />
-      </div>
     </section>
   )
 }

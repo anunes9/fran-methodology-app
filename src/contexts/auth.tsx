@@ -4,6 +4,7 @@ import { supabase } from "../services/supabase"
 import { useTranslation } from "react-i18next"
 
 type UserDataType = {
+  active: boolean
   club_id: string
   id: string
   name: string
@@ -67,7 +68,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
       .from("users_app")
       .select()
       .single()
-      .then(({ data }) => setUserData(data))
+      .then(async ({ data }) => setUserData(data))
   }
 
   const updateUser = async ({ name }: { name: string }) => {

@@ -1,9 +1,4 @@
-import {
-  IconBallTennis,
-  IconCalendarStats,
-  IconHome,
-  IconNotebook,
-} from "@tabler/icons-react"
+import { IconCalendarStats, IconFiles, IconHome } from "@tabler/icons-react"
 
 export const NavigationLinks = [
   {
@@ -13,13 +8,13 @@ export const NavigationLinks = [
     icon: <IconHome width={24} height={24} stroke={1.5} />,
     current: true,
   },
-  {
-    name: "Methodology",
-    tKey: "methodology.methodology",
-    href: "/methodology",
-    icon: <IconNotebook width={24} height={24} stroke={1.5} />,
-    current: false,
-  },
+  // {
+  //   name: "Methodology",
+  //   tKey: "methodology.methodology",
+  //   href: "/methodology",
+  //   icon: <IconNotebook width={24} height={24} stroke={1.5} />,
+  //   current: false,
+  // },
   {
     name: "Planning",
     tKey: "planning.planning",
@@ -28,10 +23,17 @@ export const NavigationLinks = [
     current: false,
   },
   {
-    name: "Exercises",
-    tKey: "exercises.exercises",
-    href: "/exercises",
-    icon: <IconBallTennis width={24} height={24} stroke={1.5} />,
+    name: "Documents",
+    tKey: "documents.documents",
+    href: "/documents",
+    icon: <IconFiles width={24} height={24} stroke={1.5} />,
     current: false,
   },
+  // {
+  //   name: "Exercises",
+  //   tKey: "exercises.exercises",
+  //   href: "/exercises",
+  //   icon: <IconBallTennis width={24} height={24} stroke={1.5} />,
+  //   current: false,
+  // },
 ]

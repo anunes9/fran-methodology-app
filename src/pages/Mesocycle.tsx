@@ -1,21 +1,25 @@
 import { Navigate, useLoaderData } from "react-router-dom"
 import { SectionHeader } from "../components/SectionHeader"
-import { ExerciseData, MesocycleType } from "../lib/mesocycles"
-import { IconClock, IconTarget } from "@tabler/icons-react"
+import { ExerciseData, MesocycleType, VideoData } from "../lib/mesocycles"
+import { IconClock, IconMovie, IconTarget } from "@tabler/icons-react"
 import { MesocycleCard } from "../components/MesocycleCard"
 import { MesocycleDetails } from "../components/MesocycleDetails"
 import { useTranslation } from "react-i18next"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { ExerciseImage } from "../components/ExerciseImage"
 import { CMSClient } from "../../sanity.config"
+import { VideoCard } from "../components/VideoCard"
 
 export const MesocyclePage = () => {
   const mesocycle = useLoaderData() as unknown as MesocycleType
   const { t } = useTranslation()
   const [tab, setTab] = useState(0)
   const [exercises, setExercises] = useState([] as ExerciseData[])
+  const [videos, setVideos] = useState([] as VideoData[])
 
-  useEffect(() => {
+  if (!mesocycle) return <Navigate to="/not-found" />
+
+  const handleExercises = () => {
     CMSClient.fetch(
       `*[_type == "exercise" && mesocycle == "${mesocycle.slug}"]{
       _id,
@@ -26,9 +30,24 @@ export const MesocyclePage = () => {
     )
       .then((data) => setExercises(data))
       .catch(console.error)
-  }, [mesocycle])
 
-  if (!mesocycle) return <Navigate to="/not-found" />
+    setTab(1)
+  }
+
+  const handleVideos = () => {
+    CMSClient.fetch(
+      `*[_type == "video" && mesocycle == "${mesocycle.slug}"]{
+      _id,
+      slug,
+      title,
+      source
+    }`
+    )
+      .then((data) => setVideos(data))
+      .catch(console.error)
+
+    setTab(2)
+  }
 
   return (
     <section>
@@ -57,8 +76,15 @@ export const MesocyclePage = () => {
         <MesocycleCard
           icon={<IconTarget width={24} height={24} color="#6bb8a4" />}
           text={t("exercises.exercises")}
-          onClick={() => setTab(1)}
+          onClick={handleExercises}
           selected={tab === 1}
+        />
+
+        <MesocycleCard
+          icon={<IconMovie width={24} height={24} color="#6bb8a4" />}
+          text={t("exercises.videos")}
+          onClick={handleVideos}
+          selected={tab === 2}
         />
       </div>
 
@@ -79,6 +105,14 @@ export const MesocyclePage = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
           {exercises.map((a) => (
             <ExerciseImage key={a.slug} title={a.title} image={a.imageUrl} />
+          ))}
+        </div>
+      )}
+
+      {tab === 2 && (
+        <div className="flex flex-wrap gap-4 mt-10">
+          {videos.map((a) => (
+            <VideoCard key={a.slug} title={a.title} source={a.source} />
           ))}
         </div>
       )}
