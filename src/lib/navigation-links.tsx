@@ -16,9 +16,9 @@ export const NavigationLinks = [
   //   current: false,
   // },
   {
-    name: "Planning",
+    name: "Training",
     tKey: "planning.planning",
-    href: "/planning",
+    href: "/training",
     icon: <IconCalendarStats width={24} height={24} stroke={1.5} />,
     current: false,
   },

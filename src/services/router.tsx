@@ -2,18 +2,16 @@ import { createBrowserRouter } from "react-router-dom"
 import { LoginPage } from "../pages/auth/Login"
 import { Layout } from "../layout/Layout"
 import { MyClubPage } from "../pages/MyClub"
-import { PlanningPage } from "../pages/Planning"
+import { TrainingPage } from "../pages/Training"
 import { MesocyclePage } from "../pages/Mesocycle"
 import { mesocycleLoader } from "../loaders/mesocycleLoader"
 import { Settings } from "../pages/Settings"
 import { ForgotPasswordPage } from "../pages/auth/ForgotPassword"
 import { RecoverPage } from "../pages/auth/Recover"
 import { DocumentsPage } from "../pages/Documents"
-// import { MethodologyPage } from "../pages/Methodology"
-// import { ExercisesPage } from "../pages/Exercises"
-// import { ExerciseItem } from "../pages/ExerciseItem"
-// import { exerciseLoader } from "../loaders/exerciseLoader"
-// import { CalendarPage } from "../pages/Calendar"
+import { TrainingBeginnerPage } from "../pages/TrainingBeginner"
+import { TrainingIntermediatePage } from "../pages/TrainingIntermediate"
+import { TrainingAdvancedPage } from "../pages/TrainingAdvanced"
 
 export const router = createBrowserRouter([
   {
@@ -36,40 +34,35 @@ export const router = createBrowserRouter([
         path: "club",
         element: <MyClubPage />,
       },
-      // {
-      //   path: "methodology",
-      //   element: <MethodologyPage />,
-      // },
       {
         path: "documents",
         element: <DocumentsPage />,
       },
       {
-        path: "planning",
-        element: <PlanningPage />,
+        path: "training",
+        element: <TrainingPage />,
       },
       {
-        path: "planning/:id",
+        path: "training/beginner",
+        element: <TrainingBeginnerPage />,
+      },
+      {
+        path: "training/intermediate",
+        element: <TrainingIntermediatePage />,
+      },
+      {
+        path: "training/advanced",
+        element: <TrainingAdvancedPage />,
+      },
+      {
+        path: "training/:slug",
         element: <MesocyclePage />,
         loader: mesocycleLoader,
       },
-      // {
-      //   path: "exercises",
-      //   element: <ExercisesPage />,
-      // },
-      // {
-      //   path: "exercises/:id",
-      //   element: <ExerciseItem />,
-      //   loader: exerciseLoader,
-      // },
       {
         path: "profile",
         element: <Settings />,
       },
-      // {
-      //   path: "calendar",
-      //   element: <CalendarPage />,
-      // },
     ],
   },
   {

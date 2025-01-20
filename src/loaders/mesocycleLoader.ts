@@ -7,7 +7,7 @@ export const mesocycleLoader = async (
   const lang = window?.localStorage.getItem("lang") || "pt"
 
   const r = await CMSClient.fetch(
-    `*[_type == "mesocycle" && slug == "${args.params.id}" && language == "${lang}"][0]{
+    `*[_type == "mesocycle" && slug == "${args.params.slug}" && language == "${lang}"][0]{
       _id,
       title,
       slug,

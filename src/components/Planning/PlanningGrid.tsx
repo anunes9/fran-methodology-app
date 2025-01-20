@@ -23,7 +23,7 @@ export const PlanningGrid = ({
           {data.map(({ slug, title, concept }) => (
             <Card
               key={slug}
-              url={`planning/${slug}`}
+              url={`/training/${slug}`}
               title={title}
               icon={null}
               subtitle={concept}
